@@ -1,0 +1,8 @@
+{
+  "local": {
+    "uri": "mongodb://localhost:27017/articlesDemo",
+    "options": {
+      "useNewUrlParser": true
+    }
+  }
+}
