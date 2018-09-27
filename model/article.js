@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let ArticleSchema = Schema({
-    createdAt: String,
+    created_at: String,
     title: String,
     url: String,
     author: String,
