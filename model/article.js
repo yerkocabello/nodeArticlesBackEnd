@@ -16,7 +16,7 @@ let ArticleSchema = Schema({
     parent_id: Number,
     created_at_i: String,
     _tags: Array,
-    objectId: String,
+    objectID: String,
     _highlightResult: {
         author: {
             value: String,

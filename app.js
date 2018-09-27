@@ -1,16 +1,11 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+'use strict';
+
 const mongoose = require('./config/db/mongo');
-
-const restContenxt = '/api';
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var ArticleRouter = require('./routes/article');
-
-var app = express();
+const bodyParser = require('body-parser');
+const express = require('express');
+const app = express();
+var cors = require('cors');
+app.use(cors());
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -18,39 +13,19 @@ app.use(function (req, res, next) {
     next();
 });
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+const restContenxt = '/api';
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+const ArticlesRoute = require('./routes/article');
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use(restContenxt, ArticleRouter);
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
-var cors = require('cors');
-app.use(cors());
+app.use(restContenxt, ArticlesRoute);
 
-
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+app.use((err, req, res, next) => {
+    // log the error...
+    console.log('global function');
+})
 
 mongoose
     .then(() => {
@@ -60,5 +35,3 @@ mongoose
         });
     })
     .catch(err => console.log(err));
-
-module.exports = app;

@@ -4,9 +4,8 @@ let ArticleList = require('../model/articleList');
 let Article = require('../model/article');
 
 function getArticleList(req, res) {
-    ArticleList.findOne()
+    Article.find({})
         .then(data=>{
-            console.log(data);
             if(data !== null){
                 res.json(data);
             }else{
@@ -16,7 +15,8 @@ function getArticleList(req, res) {
 }
 
 function deleteArticle(req, res){
-    Article.deleteOne({_id: req.params._id})
+    console.log(req.params);
+    Article.deleteOne({objectID: req.params.id})
         .then(user => {
             res.status(200).send();
         })
@@ -27,8 +27,7 @@ function deleteArticle(req, res){
 
 function insertArticle(req, res) {
     let articleList = req.body;
-    console.log(articleList);
-    ArticleList.create(articleList)
+    Article.insertMany(articleList)
         .then(user =>{
             res.status(201).send();
         })
