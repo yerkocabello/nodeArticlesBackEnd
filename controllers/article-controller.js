@@ -6,10 +6,11 @@ let Article = require('../model/article');
 function getArticleList(req, res) {
     ArticleList.findOne()
         .then(data=>{
-            if(data !== undefined){
+            console.log(data);
+            if(data !== null){
                 res.json(data);
             }else{
-                res.json();
+                res.json({});
             }
         });
 }
@@ -26,6 +27,7 @@ function deleteArticle(req, res){
 
 function insertArticle(req, res) {
     let articleList = req.body;
+    console.log(articleList);
     ArticleList.create(articleList)
         .then(user =>{
             res.status(201).send();

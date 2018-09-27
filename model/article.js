@@ -2,36 +2,36 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let ArticleSchema = Schema({
-    createdAt: string,
-    title: string,
-    url: string,
-    author: string,
-    points: number,
-    story_text: string,
-    comment_text: string,
-    num_comments: string,
-    story_id: number,
-    story_title: string,
-    story_url: string,
-    parent_id: number,
-    created_at_i: string,
+    createdAt: String,
+    title: String,
+    url: String,
+    author: String,
+    points: Number,
+    story_text: String,
+    comment_text: String,
+    num_comments: String,
+    story_id: Number,
+    story_title: String,
+    story_url: String,
+    parent_id: Number,
+    created_at_i: String,
     _tags: Array,
-    objectId: string,
+    objectId: String,
     _highlightResult: {
         author: {
-            value: string,
-            matchLevel: string,
-            fullyHighlighted: boolean,
+            value: String,
+            matchLevel: String,
+            fullyHighlighted: Boolean,
             matchedWords: Array
         },
         comment_text: {
-            value: string,
-            matchLevel: string,
+            value: String,
+            matchLevel: String,
             matchedWords: Array
         },
         story_title: {
-            value: string,
-            matchLevel: string,
+            value: String,
+            matchLevel: String,
             matchedWords: Array
         }
     }

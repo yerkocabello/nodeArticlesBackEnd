@@ -2,15 +2,15 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let ArticleListSchema = Schema({
-    exhaustiveNbHits: boolean,
+    exhaustiveNbHits: Boolean,
     hits: Array,
-    hitsPerpage: number,
-    nbHits: number,
-    nbPages: number,
-    page: number,
-    params: string,
-    processingTimeMS: number,
-    query: string
+    hitsPerpage: Number,
+    nbHits: Number,
+    nbPages: Number,
+    page: Number,
+    params: String,
+    processingTimeMS: Number,
+    query: String
 });
 
 module.exports= mongoose.model('ArticleList', ArticleListSchema);
